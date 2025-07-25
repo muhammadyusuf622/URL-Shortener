@@ -8,7 +8,7 @@ import { Url, UrlDocument } from './models';
 import { Model, Types } from 'mongoose';
 import { CreateShortUrlDto } from './dtos';
 import { User, UserDocument } from '../auth';
-import * as dayjs from 'dayjs'
+import * as dayjs from 'dayjs';
 import { nanoid } from 'nanoid';
 import { Request, Response } from 'express';
 import { IProtectedGuard } from 'src/interface';
@@ -48,7 +48,7 @@ export class ShortUrlService {
       throw new BadRequestException('Used this url before');
     }
 
-    let nanoidCod = nanoid(8);
+    const nanoidCod = nanoid(8);
 
     const newUrl = await this.urlModel.create({
       orginalUrl: payload.orginalUrl,
@@ -78,7 +78,7 @@ export class ShortUrlService {
       throw new NotFoundException('No such URL exists');
     }
 
-    let warn:any;
+    let warn: string = '';
     const now = new Date();
     if (findUrl.expiresAt && now > findUrl.expiresAt) {
       warn = 'This short URL has expired';
