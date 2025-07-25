@@ -8,7 +8,7 @@ import { Url, UrlDocument } from './models';
 import { Model, Types } from 'mongoose';
 import { CreateShortUrlDto } from './dtos';
 import { User, UserDocument } from '../auth';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs'
 import { nanoid } from 'nanoid';
 import { Request, Response } from 'express';
 import { IProtectedGuard } from 'src/interface';
@@ -65,8 +65,8 @@ export class ShortUrlService {
         orginalUrl: newUrl.orginalUrl,
         shortCode: BASE_SERVER_URL + PORT + '/' + newUrl.shortCode,
         viewersCount: newUrl.viewersCount,
-        createdAt: moment(newUrl.createdAt).format('DD.MM.YYYY HH:mm'),
-        expiresAt: moment(newUrl.expiresAt).format('DD.MM.YYYY HH:mm'),
+        createdAt: dayjs(newUrl.createdAt).format('DD.MM.YYYY HH:mm'),
+        expiresAt: dayjs(newUrl.expiresAt).format('DD.MM.YYYY HH:mm'),
       },
     };
   }
@@ -91,8 +91,8 @@ export class ShortUrlService {
         orginalUrl: findUrl.orginalUrl,
         shortCode: findUrl.shortCode,
         viewersCount: findUrl.viewersCount,
-        createdAt: moment(findUrl.createdAt).format('DD.MM.YYYY HH:mm'),
-        expiresAt: moment(findUrl.expiresAt).format('DD.MM.YYYY HH:mm'),
+        createdAt: dayjs(findUrl.createdAt).format('DD.MM.YYYY HH:mm'),
+        expiresAt: dayjs(findUrl.expiresAt).format('DD.MM.YYYY HH:mm'),
         warning: warn,
       },
     };
